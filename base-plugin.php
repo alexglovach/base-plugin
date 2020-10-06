@@ -8,8 +8,8 @@
  * that starts the plugin.
  *
  * @wordpress-plugin
- * Plugin Name:        Base Plugin
- * Description:        Base Plugin
+ * Plugin Name:       Base Plugin
+ * Description:       Base Plugin
  * Version:           0.0.1
  * Author:
  * License:           GPL-2.0+
@@ -35,14 +35,13 @@ if (!defined('WPINC')) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define('_BASE_PLUGIN_VERSION', '2.0.0');
-define('_BASE_PLUGIN_PATH', plugin_dir_path(__FILE__));
-define('_BASE_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('BASE_PLUGIN_VERSION', '1.0.0');
+define('BASE_PLUGIN_PATH', plugin_dir_path(__FILE__));
+define('BASE_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in controllers/ActivatorController.phproller.php
  */
 function activate_base_plugin()
 {
@@ -51,7 +50,6 @@ function activate_base_plugin()
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in controllers/DeactivatorControllerController.php
  */
 function deactivate_base_plugin()
 {
