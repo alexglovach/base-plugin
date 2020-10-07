@@ -19,7 +19,7 @@
 
 namespace BasePlugin;
 
-require_once 'autoload.php';
+
 
 use BasePlugin\Controllers\ActivatorController;
 use BasePlugin\Controllers\DeactivatorController;
@@ -39,6 +39,7 @@ define('BASE_PLUGIN_VERSION', '1.0.0');
 define('BASE_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('BASE_PLUGIN_URL', plugin_dir_url(__FILE__));
 
+require_once BASE_PLUGIN_PATH .'/vendor/autoload.php';
 
 /**
  * The code that runs during plugin activation.

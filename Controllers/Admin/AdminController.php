@@ -19,12 +19,12 @@ class AdminController
 
     public function enqueueStyles(): void
     {
-        wp_enqueue_style($this->BasePlugin, _BASE_PLUGIN_URL . 'admin/css/base-plugin-admin.css', array(), $this->version, 'all');
+        wp_enqueue_style($this->BasePlugin, BASE_PLUGIN_URL . 'admin/css/base-plugin-admin.css', array(), $this->version, 'all');
     }
 
     public function enqueueScripts(): void
     {
-        wp_enqueue_script($this->BasePlugin, _BASE_PLUGIN_URL . 'admin/js/base-plugin-admin.js', array('jquery'), $this->version, false);
+        wp_enqueue_script($this->BasePlugin, BASE_PLUGIN_URL . 'admin/js/base-plugin-admin.js', array('jquery'), $this->version, false);
     }
 
     public function BasePluginOptions(): void

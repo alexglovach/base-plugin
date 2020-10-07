@@ -16,8 +16,8 @@ class RunnerController
 
     public function __construct()
     {
-        if (defined('_BASE_PLUGIN_VERSION')) {
-            $this->version = _BASE_PLUGIN_VERSION;
+        if (defined('BASE_PLUGIN_VERSION')) {
+            $this->version = BASE_PLUGIN_VERSION;
         } else {
             $this->version = '1.0.0';
         }
@@ -65,7 +65,7 @@ class RunnerController
 
     public static function render(string $templateName, array $data)
     {
-        $templateName = _BASE_PLUGIN_PATH . $templateName;
+        $templateName = BASE_PLUGIN_PATH . $templateName;
         extract($data);
         include $templateName;
     }
