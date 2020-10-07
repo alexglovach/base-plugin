@@ -34,6 +34,6 @@ class AdminController
 
     public function BasePluginPage(): void
     {
-        RunnerController::render('Views/Admin/BaseAdminView.php',AdminService::BasePluginPageData());
+        RunnerController::render('Admin/BaseAdminView.php',AdminService::BasePluginPageData());
     }
 }

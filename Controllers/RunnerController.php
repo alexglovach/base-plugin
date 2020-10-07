@@ -5,6 +5,8 @@ namespace BasePlugin\Controllers;
 
 use BasePlugin\Controllers\Admin\AdminController;
 use BasePlugin\Controllers\Frontend\FrontendController;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 
 class RunnerController
@@ -65,9 +67,12 @@ class RunnerController
 
     public static function render(string $templateName, array $data)
     {
-        $templateName = BASE_PLUGIN_PATH . $templateName;
-        extract($data);
-        include $templateName;
+        $loader = new FilesystemLoader(BASE_PLUGIN_PATH.'Views/');
+        $twig = new Environment($loader, [
+            'cache' => BASE_PLUGIN_PATH.'public/cache/',
+        ]);
+        $template = $twig->load($templateName);
+        echo $template->render($data);
     }
 
     public function run(): void
