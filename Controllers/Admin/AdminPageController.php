@@ -2,10 +2,10 @@
 
 namespace BasePlugin\Controllers\Admin;
 
-use BasePlugin\Controllers\RunnerController;
+use BasePlugin\Controllers\RenderController;
 use BasePlugin\Services\Admin\AdminService;
 
-class AdminController
+class AdminPageController
 {
 
     private $BasePlugin;
@@ -17,16 +17,6 @@ class AdminController
         $this->version = $version;
     }
 
-    public function enqueueStyles(): void
-    {
-        wp_enqueue_style($this->BasePlugin, BASE_PLUGIN_URL . 'admin/css/base-plugin-admin.css', array(), $this->version, 'all');
-    }
-
-    public function enqueueScripts(): void
-    {
-        wp_enqueue_script($this->BasePlugin, BASE_PLUGIN_URL . 'admin/js/base-plugin-admin.js', array('jquery'), $this->version, false);
-    }
-
     public function BasePluginOptions(): void
     {
         add_options_page(' base plugin', ' base plugin', 'manage_options', 'base-plugin', array($this, 'BasePluginPage'));
@@ -34,6 +24,6 @@ class AdminController
 
     public function BasePluginPage(): void
     {
-        RunnerController::render('Admin/BaseAdminView.php',AdminService::BasePluginPageData());
+        RenderController::render('Admin/BaseAdminView.php',AdminService::BasePluginPageData());
     }
 }

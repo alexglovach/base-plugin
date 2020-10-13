@@ -3,13 +3,12 @@
 namespace BasePlugin\Controllers;
 
 
-use BasePlugin\Controllers\Admin\AdminController;
-use BasePlugin\Controllers\Frontend\FrontendController;
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
+use BasePlugin\Controllers\Admin\AdminPageController;
+use BasePlugin\Controllers\Admin\AdminScriptsController;
+use BasePlugin\Controllers\Frontend\FrontendScriptsController;
 
 
-class RunnerController
+class HooksController
 {
 
     protected $loader;
@@ -48,31 +47,23 @@ class RunnerController
     private function defineAdminHooks(): void
     {
 
-        $adminController = new AdminController($this->getBasePlugin(), $this->getVersion());
+        $adminScriptsController = new AdminScriptsController($this->getBasePlugin(), $this->getVersion());
 
-        $this->loader->add_action('admin_enqueue_scripts', $adminController, 'enqueueStyles');
-        $this->loader->add_action('admin_enqueue_scripts', $adminController, 'enqueueScripts');
-        $this->loader->add_action('admin_menu', $adminController, 'BasePluginOptions');
+        $this->loader->add_action('admin_enqueue_scripts', $adminScriptsController, 'enqueueStyles');
+        $this->loader->add_action('admin_enqueue_scripts', $adminScriptsController, 'enqueueScripts');
+
+        $adminPageController = new AdminPageController($this->getBasePlugin(), $this->getVersion());
+        $this->loader->add_action('admin_menu', $adminPageController, 'BasePluginOptions');
 
     }
 
     private function definePublicHooks(): void
     {
 
-        $pluginPublic = new FrontendController($this->getBasePlugin(), $this->getVersion());
+        $pluginPublic = new FrontendScriptsController($this->getBasePlugin(), $this->getVersion());
         // this files temporary not used
         $this->loader->add_action('wp_enqueue_scripts', $pluginPublic, 'enqueueScripts');
         $this->loader->add_action('wp_enqueue_scripts', $pluginPublic, 'enqueueStyles');
-    }
-
-    public static function render(string $templateName, array $data)
-    {
-        $loader = new FilesystemLoader(BASE_PLUGIN_PATH.'Views/');
-        $twig = new Environment($loader, [
-            'cache' => BASE_PLUGIN_PATH.'public/cache/',
-        ]);
-        $template = $twig->load($templateName);
-        echo $template->render($data);
     }
 
     public function run(): void

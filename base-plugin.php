@@ -21,7 +21,7 @@ namespace BasePlugin;
 
 use BasePlugin\Controllers\ActivatorController;
 use BasePlugin\Controllers\DeactivatorController;
-use BasePlugin\Controllers\RunnerController;
+use BasePlugin\Controllers\HooksController;
 
 // If this file is called directly, abort.
 if (!defined('WPINC')) {
@@ -67,13 +67,13 @@ register_deactivation_hook(__FILE__, 'deactivate_base_plugin');
  *
  * @since    1.0.0
  */
-function run__base_plugin()
+function run_plugin_hooks()
 {
-    $plugin = new RunnerController();
+    $plugin = new HooksController();
     $plugin->run();
 }
 
-run__base_plugin();
+run_plugin_hooks();
 
 /*
 //connect by update-checker documentation - change to correct!!!!!

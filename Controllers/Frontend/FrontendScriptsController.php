@@ -2,7 +2,7 @@
 
 namespace BasePlugin\Controllers\Frontend;
 
-class FrontendController
+class FrontendScriptsController
 {
 
     private $BasePlugin;
