@@ -28,6 +28,7 @@ if (!defined('WPINC')) {
     die;
 }
 
+
 /**
  * Currently plugin version.
  * Start at version 1.0.0 and use SemVer - https://semver.org
@@ -37,7 +38,17 @@ define('BASE_PLUGIN_VERSION', '1.0.0');
 define('BASE_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('BASE_PLUGIN_URL', plugin_dir_url(__FILE__));
 
-require_once __DIR__ .'/vendor/autoload.php';
+//check and run composer
+if (!file_exists(BASE_PLUGIN_PATH . '/vendor')) {
+    error_log('run composer');
+    exec(
+        "cd " . BASE_PLUGIN_PATH . " &&
+        export HOME=" . BASE_PLUGIN_PATH . " &&
+        php " . BASE_PLUGIN_PATH . "/composer.phar install"
+    );
+}
+
+require_once __DIR__ . '/vendor/autoload.php';
 
 /**
  * The code that runs during plugin activation.
